@@ -63,48 +63,62 @@ const ConspiracyCorner: React.FC = () => {
   const [selectedTheory, setSelectedTheory] = useState(0);
 
   return (
-    <div className="border-2 border-black p-3 bg-white">
-      <h2 className="section-title flex justify-between items-center">
-        <span>CONSPIRACY CORNER</span>
+    <div className="border-2 border-black p-3 bg-white w-full overflow-hidden">
+      {/* Header with stacked layout on mobile */}
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mb-3">
+        <h2 className="section-title text-base sm:text-lg mb-0">CONSPIRACY CORNER</h2>
         <select 
           value={selectedTheory}
           onChange={(e) => setSelectedTheory(Number(e.target.value))}
-          className="text-xs border border-black p-1 bg-white font-mono"
+          className="w-full sm:w-64 text-xs border border-black p-2 bg-white font-mono truncate"
         >
           {theories.map((theory, idx) => (
-            <option key={idx} value={idx}>{theory.title}</option>
+            <option key={idx} value={idx} className="truncate">
+              {theory.title}
+            </option>
           ))}
         </select>
-      </h2>
+      </div>
       
-      <div className="mt-2 border border-black p-3 bg-gray-50">
-        <div className="flex justify-between items-center border-b border-gray-300 pb-1 mb-2">
-          <h3 className="font-bold text-sm font-serif">{theories[selectedTheory].title}</h3>
-          <span className="text-xxs text-gray-500">by {theories[selectedTheory].author}</span>
+      {/* Content Card */}
+      <div className="border border-black p-3 bg-gray-50 overflow-hidden">
+        {/* Title and Author - stacked on mobile */}
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 border-b border-gray-300 pb-2 mb-3">
+          <h3 className="font-bold text-sm font-serif break-words pr-2">
+            {theories[selectedTheory].title}
+          </h3>
+          <span className="text-xxs text-gray-500 whitespace-nowrap">
+            by {theories[selectedTheory].author}
+          </span>
         </div>
         
-        <p className="text-sm italic leading-relaxed">
+        {/* Content - wraps naturally */}
+        <p className="text-sm italic leading-relaxed break-words">
           {theories[selectedTheory].content}
         </p>
         
-        <div className="mt-3 text-xs border-l-2 border-black pl-2 py-1">
+        {/* Evidence section - wraps properly */}
+        <div className="mt-3 text-xs border-l-2 border-black pl-2 py-1 overflow-hidden">
           <span className="font-bold text-xxs uppercase">supporting evidence:</span>
           <ul className="list-disc list-inside mt-1 space-y-0.5">
             {theories[selectedTheory].evidence.split('•').filter(e => e.trim()).map((item, idx) => (
-              <li key={idx} className="text-xxs text-gray-700 ml-1">{item.trim()}</li>
+              <li key={idx} className="text-xxs text-gray-700 break-words pl-1">
+                {item.trim()}
+              </li>
             ))}
           </ul>
         </div>
         
-        <div className="flex justify-between items-center mt-2 text-xxs border-t border-gray-200 pt-1">
-          <span className="font-mono">{theories[selectedTheory].rating}</span>
-          <span className="text-gray-400">
+        {/* Footer - stacks on mobile */}
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 mt-2 text-xxs border-t border-gray-200 pt-2">
+          <span className="font-mono break-words">{theories[selectedTheory].rating}</span>
+          <span className="text-gray-400 whitespace-nowrap">
             {theories[selectedTheory].content.length} chars • {theories[selectedTheory].content.split(' ').length} words • #{47 + selectedTheory}
           </span>
         </div>
         
         {/* Hidden message - barely visible */}
-        <div className="text-xxs text-gray-200 text-right mt-1 select-none">
+        <div className="text-xxs text-gray-200 text-right mt-1 select-none break-words">
           {selectedTheory === 0 && 'respect my authoritah'}
           {selectedTheory === 1 && 'excellent smithers'}
           {selectedTheory === 2 && 'mysterion lives'}
@@ -116,11 +130,14 @@ const ConspiracyCorner: React.FC = () => {
         </div>
       </div>
       
+      {/* Footer messages */}
       <div className="mt-2 text-xxs text-gray-400 border-t border-gray-200 pt-1 text-right">
-        <span className="opacity-30 hover:opacity-100">the government doesn't want you to read these • 47 reasons why</span>
+        <span className="opacity-30 hover:opacity-100 break-words">
+          the government doesn't want you to read these • 47 reasons why
+        </span>
       </div>
       
-      <div className="mt-1 text-xxs text-gray-300 italic text-center">
+      <div className="mt-1 text-xxs text-gray-300 italic text-center break-words">
         * The Daily Noise is not responsible for what you now know
       </div>
     </div>
