@@ -15,6 +15,7 @@ import LostAndFound from "./LostAndFound";
 import AskNinja from "./AskNinja";
 import ImageGallery from "./ImageGallery";
 import NoService from "./responses";
+import TopGearBlog from "./TopgearBlog";
 
 const Newspaper: React.FC = () => {
   // Create refs for each section
@@ -31,6 +32,7 @@ const Newspaper: React.FC = () => {
   const noserviceRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
   const poetryRef = useRef<HTMLDivElement>(null);
+  const topgearblogRef = useRef<HTMLDivElement>(null);
 
   // Scroll function to be passed to NavBar
   const scrollToSection = (sectionId: string) => {
@@ -47,7 +49,8 @@ const Newspaper: React.FC = () => {
       'askninja-section': askninjaRef,
       'noservice-section': noserviceRef,
       'gallery-section': galleryRef,
-      'poetry-section': poetryRef
+      'poetry-section': poetryRef,
+      'topgear-section': topgearblogRef
     };
 
     const ref = refMap[sectionId];
@@ -64,7 +67,7 @@ const Newspaper: React.FC = () => {
       <Header />
       <NavBar scrollToSection={scrollToSection} />
 
-      {/* Mobile: 1 column, Desktop: 3 columns - YOUR ORIGINAL LAYOUT */}
+      {/* Mobile: 1 column, Desktop: 3 columns */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mt-4 md:mt-6">
         {/* Left Column - Main content */}
         <div className="md:col-span-2 space-y-4 md:space-y-6">
@@ -123,6 +126,11 @@ const Newspaper: React.FC = () => {
             <PoetryCorner />
           </div>
         </div>
+      </div>
+
+      {/* Top Gear Blog Section - Full width, below the grid, above footer */}
+      <div id="topgear-section" ref={topgearblogRef} className="mt-6 md:mt-8 border-t-2 border-black pt-6">
+        <TopGearBlog />
       </div>
 
       <Footer />

@@ -17,7 +17,7 @@ const theories = [
   },
   {
     title: "KENNY DOESN'T DIE, HE TRAVELS THROUGH DIMENSIONS",
-    author: "Mysterion_Truth",
+    author: "Mysterion_Truth", 
     content: "Think about it. Every time Kenny 'dies', he's back the next episode with no explanation. The hood hides his face because it's not always the same Kenny. The Mysterion episodes basically confirmed he has powers. The deaths are just dimensional jumps. The real Kenny is a multiversal constant, like a cockroach but with better parka game.",
     evidence: "• Always comes back • The city knows something • 47 deaths? More like 47 relocations • The poor family is a front",
     rating: "FOUR TINFOIL HATS (oh my god they killed Kenny's continuity)"
